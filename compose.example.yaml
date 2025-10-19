@@ -1,0 +1,21 @@
+name: hronom-anchor-java-gen
+
+# Inspired by https://java.testcontainers.org/supported_docker_environment/continuous_integration/dind_patterns/#docker-compose-example
+services:
+  anchor-java-gen:
+    container_name: anchor-java-gen
+    build:
+      context: .
+      target: application
+    stop_signal: SIGKILL
+    stdin_open: true
+    tty: true
+    working_dir: $PWD
+    environment:
+      EXAMPLE: aaa
+    volumes:
+      - $PWD:$PWD
+      - /var/run/docker.sock:/var/run/docker.sock
+      # Maven cache (optional)
+      - ~/.m2:/root/.m2
+    command: mvn test --batch-mode

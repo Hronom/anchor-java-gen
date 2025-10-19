@@ -39,4 +39,4 @@ jobs:
           push: true
           tags: ${{ steps.docker-meta.outputs.tags }}
           labels: ${{ steps.docker-meta.outputs.labels }}
-          secrets: github_username=${{ secrets.GITHUB_USERNAME }},github_token=${{ secrets.GITHUB_TOKEN }}
+          secrets: github_username=${{ vars.SAVA_GITHUB_USERNAME }},github_token=${{ secrets.SAVA_GITHUB_TOKEN }}

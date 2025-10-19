@@ -495,3 +495,4 @@ FodyWeavers.xsd
 *.sln.iml
 
 ### Misc
+*.secret

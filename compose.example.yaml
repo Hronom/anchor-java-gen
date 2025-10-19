@@ -6,7 +6,10 @@ services:
     container_name: anchor-java-gen
     build:
       context: .
-      target: application
+      target: runner
+      secrets:
+        - github_username
+        - github_token
     stop_signal: SIGKILL
     stdin_open: true
     tty: true
@@ -15,7 +18,9 @@ services:
       EXAMPLE: aaa
     volumes:
       - $PWD:$PWD
-      - /var/run/docker.sock:/var/run/docker.sock
-      # Maven cache (optional)
-      - ~/.m2:/root/.m2
-    command: mvn test --batch-mode
+
+secrets:
+  github_username:
+    file: ./github_username.secret
+  github_token:
+    file: ./github_token.secret

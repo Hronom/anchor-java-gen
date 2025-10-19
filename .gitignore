@@ -496,3 +496,4 @@ FodyWeavers.xsd
 
 ### Misc
 *.secret
+java-generated

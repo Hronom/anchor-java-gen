@@ -2,8 +2,8 @@ name: hronom-anchor-java-gen
 
 # Inspired by https://java.testcontainers.org/supported_docker_environment/continuous_integration/dind_patterns/#docker-compose-example
 services:
-  anchor-java-gen:
-    container_name: anchor-java-gen
+  anchor-java-gen-test:
+    container_name: anchor-java-gen-test
     build:
       context: .
       target: runner
@@ -13,11 +13,19 @@ services:
     stop_signal: SIGKILL
     stdin_open: true
     tty: true
-    working_dir: $PWD
-    environment:
-      EXAMPLE: aaa
     volumes:
-      - $PWD:$PWD
+      - .:/work
+    # Example command
+    command: [
+       "--tabLength=2",
+       "--sourceDirectory=/work/java-generated",
+       "--moduleName=org.your.module",
+       "--basePackageName=org.your.package.anchor.gen",
+       "--programs=/work/main_net_programs.json",
+       "--rpc=https://api.devnet.solana.com",
+       "--baseDelayMillis=200",
+       "--numThreads=5"
+    ]
 
 secrets:
   github_username:

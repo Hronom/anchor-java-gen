@@ -13,6 +13,24 @@ Based on [anchor-src-gen](https://github.com/sava-software/anchor-src-gen).
 
 ## Usage
 
+Usage:
+```shell
+docker run --rm \
+-v "$(pwd)":/work \
+anchor-java-gen:latest \
+--tabLength=2 \
+--sourceDirectory="/work/java-generated" \
+--moduleName="org.your.module" \
+--basePackageName="org.your.package.anchor.gen" \
+--programs="/work/main_net_programs.json" \
+--rpc="https://api.devnet.solana.com" \
+--baseDelayMillis=200 \
+--numThreads=5
+```
+See the set of commands here: https://sava.software/utilities/anchor-src-gen#program-configuration
+
+## Local usage
+
 ### Use using docker
 
 Write secrets to files:
